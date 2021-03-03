@@ -1,0 +1,21 @@
+version: '3.1'
+services:
+#  php:
+#    image: yiisoftware/yii2-php:7.4-apache
+#    volumes:
+#      - ~/.composer-docker/cache:/root/.composer/cache:delegated
+#      - ./:/app:delegated
+#    ports:
+#      - '8000:80'
+
+  postgres:
+    image: postgres
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_PASSWORD: '123'
+      PGDATA: '/var/lib/postgresql/data/pgdata'
+
+    volumes:
+      - ./data/postgresql:/var/lib/postgresql/data/pgdata
+
