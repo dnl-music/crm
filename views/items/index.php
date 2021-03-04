@@ -126,6 +126,17 @@ function createTd(className)
      td.className = className;
      return td;
 }
+
+function clearModal()
+{
+    var modal = $(this);
+    modal.find('.modal-footer').html('');
+    modal.find('.modal-body input[name="id"]').val('');
+    modal.find('.modal-body input[name="article"]').val('');
+    modal.find('.modal-body input[name="name"]').val('');
+    modal.find('.modal-body input[name="remainder"]').val('');
+    modal.find('.modal-body input[name="unit"]').val('');
+}
     
 document.getElementById('add-button').onclick = function(e) {
     var tr = document.createElement('tr');
@@ -162,6 +173,7 @@ $("#myModal .save").on("click", function(e){
     } else {
         url = '/items/add';
     }
+    $("#myModal").find('.modal-footer').html('');
     fetch(url, {
         method: 'POST',
         body: JSON.stringify({
@@ -214,7 +226,10 @@ $('#myModal').on('show.bs.modal', function (event) {
       modal.find('.modal-body input[name="remainder"]').val(remainder);
       modal.find('.modal-body input[name="unit"]').val(unit);
   }
-})
+});
+$('#myModal').on('hide.bs.modal', function (event) {
+    clearModal();
+});
 JS;
 $this->registerJs($js);
 
